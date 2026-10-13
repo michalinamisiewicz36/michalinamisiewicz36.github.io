@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fcf5f8;
+            color: #3a2230;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding: 20px;
+        }
+
+        .header-icon {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            filter: drop-shadow(0 0 10px rgba(235, 104, 166, 0.4));
+        }
+
+        .header-title {
+            font-size: 2.2rem;
+            color: #4a2037;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header-sub {
+            font-size: 1rem;
+            color: #7d506a;
+        }
+
+        .box {
+            background: #f7e8f0;
+            border: 2px solid #eab0d0;
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(210, 140, 175, 0.1);
+        }
+
+        .box.click {
+            cursor: pointer;
+        }
+
+        .box.click:hover {
+            transform: scale(1.04);
+            border-color: #eb68a6;
+            box-shadow: 0 0 20px rgba(235, 104, 166, 0.6), 0 8px 25px rgba(235, 104, 166, 0.3);
+            background: #fdf0f6;
+        }
+
+        .box-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: #eb68a6;
+        }
+
+        .box-title {
+            font-size: 1.3rem;
+            color: #4a2037;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .box-desc {
+            font-size: 0.95rem;
+            color: #6b435b;
+            line-height: 1.5;
+        }
+
+        .box-arrow {
+            align-self: flex-end;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #eb68a6;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .box.click:hover .box-arrow {
+            transform: translateX(5px);
+        }
+
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(2, 1fr));  /*220px */
+            gap: 20px;
+            width: 100%;
+        }
+
+        .section {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-back {
+            background: #f7e8f0;
+            border: 2px solid #eab0d0;
+            color: #4a2037;
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            border-color: #eb68a6;
+            box-shadow: 0 0 12px rgba(235, 104, 166, 0.4);
+            transform: scale(1.02);
+            color: #eb68a6;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background: #eab0d0;
+            color: #4a2037;
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #eb68a6;
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 4px 10px rgba(235, 104, 166, 0.3);
+        }
+
+        .btn:hover {
+            background: #d85292;
+            box-shadow: 0 0 15px rgba(235, 104, 166, 0.7);
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #9c6c89;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="header">
+            <div class="header-icon">🌸</div>
+            <h1 class="header-title">Portfolio</h1>
+            <p class="header-sub">Michalina Misiewicz</p>
+        </header>
+
+       
+        <main id="page-home" class="section active">
+            <div class="grid">
+
+                
+                <div class="box click" onclick="showPage('about')">
+                    <div>
+                        <div class="box-icon">🌸</div>
+                        <h2 class="box-title">O mnie</h2>
+                        <p class="box-desc">Kim jestem, co lubie robic w wolnym czasie.
+                        </p>
+                    </div>
+                    <div class="box-arrow">✦ Zobacz →</div>
+                </div>
+
+               
+                <div class="box click" onclick="showPage('projects')">
+                    <div>
+                        <div class="box-icon">🌸</div>
+                        <h2 class="box-title">Moje Projekty</h2>
+                        <p class="box-desc">Przejdź do listy moich prac.</p>
+                    </div>
+                    <div class="box-arrow">✦ Zobacz →</div>
+                </div>
+
+                
+                <div class="box click" onclick="showPage('skills')">
+                    <div>
+                        <div class="box-icon">🌸</div>
+                        <h2 class="box-title">Umiejętności</h2>
+                        <p class="box-desc">Technologie, z których korzystam przy pisaniu kodu i tworzeniu stron.</p>
+                    </div>
+                    <div class="box-arrow">✦ Zobacz →</div>
+                </div>
+
+               
+                <div class="box click" onclick="showPage('contact')">
+                    <div>
+                        <div class="box-icon">🌸</div>
+                        <h2 class="box-title">Kontakt</h2>
+                        <p class="box-desc">Tu znajdziesz moje dane kontaktowe.</p>
+                    </div>
+                    <div class="box-arrow">✦ Zobacz →</div>
+                </div>
+
+            </div>
+        </main>
+
+        
+        <section id="page-about" class="section">
+            <button class="btn-back" onclick="showPage('home')">← Powrót do strony głównej</button>
+
+            <div class="box">
+                <div class="box-icon">🌸</div>
+                <h2 class="box-title">O mnie:</h2>
+                <p class="box-desc" style="margin-top: 10px; font-size: 25px;">
+                    Nazywam sie Michalina i mam 17 lat
+                </p>
+                <p class="box-desc" style="margin-top: 10px; font-size: 20px;">
+                    Interesuję się mediami, dziennikarstwem i sportem – moim wielkim marzeniem i celem jest praca w branży mediów sportowych, ze szczególnym uwzględnieniem F1. Uczę się podstaw programowania i tworzenia stron, aby wykorzystywać cyfrowe narzędzia do tworzenia jeszcze ciekawszych treści. Poza śledzeniem wyścigów i sportowych emocji, w wolnych chwilach czytam książki, słucham muzyki i odkrywam dobre filmy.
+                </p>
+            </div>
+        </section>
+
+       
+        <section id="page-projects" class="section">
+            <button class="btn-back" onclick="showPage('home')">← Powrót do strony głównej</button>
+
+            <div style="margin-bottom: 20px;">
+                <h2 class="header-title" style="font-size: 1.6rem; text-align: left;">Projekty</h2>
+            </div>
+
+            <div class="grid" id="projects-container">
+
+            </div>
+        </section>
+
+       
+        <section id="page-skills" class="section">
+            <button class="btn-back" onclick="showPage('home')">← Powrót do strony głównej</button>
+
+            <div class="box">
+                <div class="box-icon">✦</div>
+                <h2 class="box-title">Z czego korzystam</h2>
+                <p class="box-desc">Technologie i narzędzia:</p>
+
+                <div class="tags" style="margin-top: 15px;">
+                    <span class="tag">HTML5</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">VS Code</span>
+                    <span class="tag">PHP</span>
+                    <span class="tag">Java</span>
+                </div>
+            </div>
+        </section>
+
+       <section id="page-contact" class="section">
+    <button class="btn-back" onclick="showPage('home')">← Powrót do strony głównej</button>
+
+    <div class="box">
+        <div class="box-icon">✉</div>
+        <h2 class="box-title">Napisz do mnie</h2>
+        
+        <p class="box-desc" style="font-size: 18px; line-height: 1.8;">
+            E-mail: <b><a href="mailto:mojemail@gmail.com" style="color: inherit; text-decoration: underline;">mojemail@gmail.com</a></b><br>
+            Numer telefonu: <b>+48 123 456 789</b>
+        </p>
+
+        <div style="margin-top: 25px;">
+            <a href="mailto:mojemail@gmail.com" class="btn">✦ Wyślij wiadomosc</a>
+        </div>
+    </div>
+</section>
+
+
+        <footer>
+            @ moje portfolio ✦
+        </footer>
+
+    </div>
+
+    <script>
+        const projects = [
+            {
+                icon: "✦",
+                title: "Projekt 1 ",
+                desc: "opis",
+                tags: ["HTML", "CSS", "JavaScript"],
+                demo: "#"
+            },
+            {
+                icon: "✦",
+                title: "Projekt 2",
+                desc: "opis",
+                tags: ["HTML", "CSS", "PHP"],
+                demo: "#"
+            },
+            {
+                icon: "✦",
+                title: "Projekt 3",
+                desc: "opis",
+                tags: ["Java"],
+                demo: "#"
+            }
+        ];
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.section');
+            pages.forEach(p => p.classList.remove('active'));
+
+            const target = document.getElementById('page-' + pageId);
+            if (target) {
+                target.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = projects.map(p => `
+        <div class="box click">
+          <div>
+            <div class="box-icon">${p.icon}</div>
+            <h3 class="box-title">${p.title}</h3>
+            <p class="box-desc">${p.desc}</p>
+            <div class="tags">
+              ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+          </div>
+          <a href="${p.demo}" target="_blank" class="btn" style="margin-top: 20px;">Otwórz projekt ↗</a>
+        </div>
+      `).join('');
+        }
+
+        renderProjects();
+    </script>
+
+</body>
+
+</html>
